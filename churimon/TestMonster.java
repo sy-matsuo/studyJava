@@ -18,5 +18,20 @@ class TestMonster {
 
 		System.out.println(m1.getStatus());
 
+		System.out.println(m1.useWaza());
+
+		m1.setWaza("かみつく", "5.0");
+		System.out.println(m1);
+		System.out.println(m1.useWaza());
+
+		m1.damaged(m1.useWaza());
+		System.out.println(m1);
+
+		m1.damaged(m1.useWaza());
+		System.out.println(m1);
+
+		m1.damaged(m1.useWaza());
+		System.out.println(m1);
+
 	}
 }

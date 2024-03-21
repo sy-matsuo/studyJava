@@ -10,25 +10,61 @@ import java.math.RoundingMode;
  * @author shuhei.matsuo
  *
  */
-public class Monster1 {
+public class Monster2 {
 
 	//------------フィールド------------
-	String character = "(unknown)";  // 種族
-	String trainer = "(wild)";       // トレーナー
-	String name = "(noname)";        // なまえ
-	int lv = 1;                      // レベル
-	int hp = 80;                     // HP
-	int atk = 15;                    // こうげき
-	int def = 10;                    // ぼうぎょ
-	int spd = 10;                    // すばやさ
-	int hpMax = 80;                  // HP初期値
-	String wazaNm = "たいあたり";    // わざ（なまえ）
-	String wazaDmgRate = "1.0";      // わざ（ダメージ倍率）
+	String character ;  // 種族
+	String trainer ;       // トレーナー
+	String name ;        // なまえ
+	int lv ;                      // レベル
+	int hp ;                     // HP
+	int atk ;                    // こうげき
+	int def ;                    // ぼうぎょ
+	int spd ;                    // すばやさ
+	int hpMax ;                  // HP初期値
+	String wazaNm ;    // わざ（なまえ）
+	String wazaDmgRate ;      // わざ（ダメージ倍率）
 
 	//------------フィールド(定数)------------
 	final String WAZA_DMG_RATE_REGEXP = "^[0-9]+\\.[0-9]$"  ;  //バリデーションチェックで使用する正規表現
 	final String DMG_CORRECTION_120 = "120" ;                     //ダメージ計算の補正で使う数字
 	final String DMG_CORRECTION_1   = "1"   ;                     //ダメージ計算の補正で使う数字
+
+	//------------コンストラクタ------------
+	//コンストラクタ1[引数なし]
+	Monster2() {
+
+		this.character = "(unknown)";     // 種族
+		this.trainer = "(wild)";          // トレーナー
+		this.name = "(noname)";           // なまえ
+		this.lv = 1;                      // レベル
+		this.hp = 80;                     // HP
+		this.atk = 15;                    // こうげき
+		this.def = 10;                    // ぼうぎょ
+		this.spd = 10;                    // すばやさ
+		this.hpMax = 80;                  // HP初期値
+		this.wazaNm = "たいあたり";       // わざ（なまえ）
+		this.wazaDmgRate = "1.0";         // わざ（ダメージ倍率）
+
+	}
+
+	//コンストラクタ2[引数1:トレーナー, 引数2:なまえ]
+	Monster2(String tr, String nm) {
+
+		this();                       // コンストラクタ1呼び出し
+		this.trainer = tr;            // トレーナー
+		this.name = nm;               // なまえ
+
+	}
+
+	//コンストラクタ3[引数1:トレーナー, 引数2:なまえ, 引数3:レベル]
+	Monster2(String tr, String nm, int lev) {
+		this(tr, nm);                       // コンストラクタ2呼び出し
+
+		if(lev > 1){
+			levelUp(lev - 1);
+		}
+	}
 
 
 	@Override
@@ -41,12 +77,12 @@ public class Monster1 {
 
 	void levelUp(int lvUp) {
 
-		lv += lvUp * 1;
-		hpMax += lvUp * 30;
-		atk += lvUp * 5;
-		def += lvUp * 5;
-		spd += lvUp * 5;
-		hp = this.hpMax;
+		this.lv += lvUp * 1;
+		this.hpMax += lvUp * 30;
+		this.atk += lvUp * 5;
+		this.def += lvUp * 5;
+		this.spd += lvUp * 5;
+		this.hp = this.hpMax;
 
 	}
 
@@ -99,10 +135,6 @@ public class Monster1 {
 		}
 
 		return dmg;
-
-
 	}
-
-
 
 }
