@@ -33,8 +33,9 @@ public class StudentListDto {
 		case "2": tmpGender = "女性";
 			break;
 		}
-		return tmpGender;}
-	
+		return tmpGender;
+	}
+
 	public void setGender(String gender) {this.gender = gender;}
 
 	//getter/setter（対象フィールド：age）
@@ -42,7 +43,17 @@ public class StudentListDto {
 	public void setAge(int age) {this.age = age;}
 
 	//getter/setter（対象フィールド：careerMon）
-	public int getCareerMon() {return career_mon;}
+	public String getCareerMon() {
+		String tmpCareerMon = "";
+		if(career_mon % 12 == 0) {
+			tmpCareerMon = Integer.toString(career_mon / 12) + "年";
+		} else if(career_mon < 12) {
+			tmpCareerMon = Integer.toString(career_mon) + "か月";
+		} else {
+			tmpCareerMon = Integer.toString(career_mon / 12) + "年" + Integer.toString(career_mon % 12) + "か月";
+		}
+		return tmpCareerMon;
+	}
 	public void setCareerMon(int career_mon) {this.career_mon = career_mon;}
 
 	//getter/setter（対象フィールド：branchName）
@@ -50,6 +61,14 @@ public class StudentListDto {
 	public void setBranchName(String branch_name) {this.branch_name = branch_name;}
 
 	//getter/setter（対象フィールド：courseName）
-	public String getCourseName() {return course_name;}
+	public String getCourseName() {
+		String tmpCourseName = "";
+		if(course_name != null) {
+			tmpCourseName = course_name;
+		} else {
+			tmpCourseName = "受講なし";
+		}
+		return tmpCourseName;
+	}
 	public void setCourseName(String course_name) {this.course_name = course_name;}
 }

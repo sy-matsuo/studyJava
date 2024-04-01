@@ -10,6 +10,7 @@ public class FWriterStudentInfoMain {
 		//ビジネスロジック（ユーザーの情報抽出）クラスのインスタンス化＆メソッド起動
 		FWriterStudentListBL blSel = new FWriterStudentListBL();
 		blSel.extractAll();
+		blSel.writeFile();
 
 	}
 }

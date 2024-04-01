@@ -96,7 +96,7 @@ public class StudentListDao {
 			buf.append(" =               ");
 			buf.append(" b.BRANCH_ID     ");
 			buf.append(" )               ");
-			buf.append(" inner join      ");
+			buf.append(" left outer join ");
 			buf.append("  course c       ");
 			buf.append(" on              ");
 			buf.append(" a.COURSE_ID     ");
